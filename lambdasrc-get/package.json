@@ -1,0 +1,16 @@
+{
+  "name": "lambdasrc-get",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "zip": "zip -r Archive.zip index.js node_modules",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.315.0",
+    "mysql": "^2.16.0"
+  }
+}

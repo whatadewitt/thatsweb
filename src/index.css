@@ -1,0 +1,327 @@
+@import url("https://fonts.googleapis.com/css?family=Dokdo|Sigmar+One");
+
+:root {
+  --yellow: #e7bc58;
+  --red: #fc363f;
+  --black: #292725;
+}
+
+body {
+  background: url("assets/bg.jpg") var(--black);
+  color: #ffffff;
+  font-family: "Dokdo", cursive;
+  margin: 0;
+  padding: 0;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.-hidden {
+  display: none !important;
+}
+
+.thatsweb {
+  display: grid;
+  grid-template-rows: 1fr 8rem;
+  grid-template-areas: "main" "footer";
+  height: 100vh;
+}
+
+.thatsweb-home {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.thatsweb-nav {
+  display: flex;
+  justify-content: center;
+}
+
+.thatsweb-nav a + a {
+  margin-left: 1rem;
+}
+
+.thatsweb__title {
+  font-family: "Sigmar One", cursive;
+  margin: 0;
+}
+
+.thatsweb-home .thatsweb__title {
+  font-size: 6rem;
+  line-height: 1em;
+}
+
+.thatsweb__subtitle {
+  margin: 0;
+}
+
+.thatsweb-home .thatsweb__subtitle {
+  font-size: 3rem;
+}
+
+.thatsweb-button {
+  border: 0;
+  cursor: pointer;
+  font-family: "Dokdo", cursive;
+  font-size: 2rem;
+  padding: 1rem;
+  transform: scale(1);
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.thatsweb-button:hover,
+.thatsweb-button:active {
+  transform: scale(1.1);
+}
+
+.thatsweb-button.-home {
+  align-self: center;
+  margin-top: 1rem;
+  position: relative;
+}
+
+.thatsweb-button.-back {
+  padding-left: 3rem;
+  padding-right: 3rem;
+}
+
+.thatsweb-button.-home::before {
+  background: var(--yellow);
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  transition: transform 0.2s ease-out;
+  transform: scale(0);
+  z-index: -1;
+}
+
+.thatsweb-button.-home:hover::before {
+  transform: scale(1);
+}
+
+.thatsweb-footer {
+  grid-area: footer;
+  padding: 1.5rem;
+  text-align: right;
+}
+
+.thatsweb-footer-brand {
+  line-height: 0;
+  width: 5rem;
+}
+
+.thatsweb__main {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  grid-template-areas: "header" "main";
+}
+
+.thatsweb__header {
+  align-items: baseline;
+  display: flex;
+  grid-area: header;
+  padding: 1rem;
+}
+
+.thatsweb__header * + * {
+  margin-left: 1rem;
+}
+
+.thatsweb-tool__container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.thatsweb-tool__controls {
+  position: absolute;
+  bottom: 0;
+  transform: translateY(100%);
+  width: 100%;
+  display: flex;
+}
+
+.thatsweb-tool__controls > * {
+  flex-basis: 100%;
+}
+
+.thatsweb-tool__group {
+  position: relative;
+  line-height: 0;
+}
+
+.thatsweb-tool__processing,
+.thatsweb-tool__share {
+  align-items: center;
+  background: var(--yellow);
+  color: var(--black);
+  display: flex;
+  font-size: 2rem;
+  justify-content: center;
+  padding: 1rem 0;
+}
+
+.thatsweb-tool__share {
+  align-items: center;
+  padding: 0;
+}
+
+.thatsweb-tool__share a {
+  color: var(--black);
+  height: 1.5rem;
+  line-height: 2rem;
+  margin-left: 2rem;
+  transition: color 0.1s linear;
+  width: 1.5rem;
+}
+
+.thatsweb-tool__share a svg {
+  height: 100%;
+  width: 100%;
+}
+
+.thatsweb-tool__share a:hover,
+.thatsweb-tool__share a:active {
+  color: #ffffff;
+}
+
+.thatsweb-tool__controls .thatsweb-button.-meme {
+  flex-grow: 1;
+}
+
+.thatsweb-tool__controls .thatsweb-button.-meme:hover {
+  z-index: 10;
+}
+
+.thatsweb-tool__controls .thatsweb-button.-restart {
+  background: var(--yellow);
+  flex-basis: 30%;
+  flex-shrink: 1;
+}
+
+.thatsweb-tool__controls.-share .thatsweb-button.-restart {
+  background: #fff;
+}
+
+.thatsweb-tool__controls .thatsweb-button:hover {
+  transform: scale(1.02);
+}
+
+.thatsweb-tool__group .thatsweb-loader {
+  align-items: center;
+  background: rgba(0, 0, 0, 0.4);
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.thatsweb__list {
+  grid-area: main;
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.thatsweb__meme {
+  text-align: center;
+  margin: 0 auto;
+  width: 800px;
+}
+
+.thatsweb-list__memes {
+  display: flex;
+  flex-flow: row wrap;
+  margin: 0 auto;
+  width: 62rem;
+}
+
+.thatsweb-list__meme {
+  box-sizing: border-box;
+  width: 20%;
+  padding: 0.2rem;
+  line-height: 0;
+}
+
+.thatsweb-list__meme img {
+  height: auto;
+  width: 100%;
+}
+
+/* via http://tobiasahlin.com/spinkit/ */
+
+.spinner {
+  width: 50px;
+  height: 40px;
+  text-align: center;
+  font-size: 10px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.spinner > div {
+  background-color: #ffffff;
+  height: 100%;
+  width: 6px;
+  display: inline-block;
+
+  -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
+  animation: sk-stretchdelay 1.2s infinite ease-in-out;
+}
+
+.spinner > div + div {
+  margin-left: 3px;
+}
+
+.spinner .rect2 {
+  -webkit-animation-delay: -1.1s;
+  animation-delay: -1.1s;
+}
+
+.spinner .rect3 {
+  -webkit-animation-delay: -1s;
+  animation-delay: -1s;
+}
+
+.spinner .rect4 {
+  -webkit-animation-delay: -0.9s;
+  animation-delay: -0.9s;
+}
+
+.spinner .rect5 {
+  -webkit-animation-delay: -0.8s;
+  animation-delay: -0.8s;
+}
+
+@-webkit-keyframes sk-stretchdelay {
+  0%,
+  40%,
+  100% {
+    -webkit-transform: scaleY(0.4);
+  }
+  20% {
+    -webkit-transform: scaleY(1);
+  }
+}
+
+@keyframes sk-stretchdelay {
+  0%,
+  40%,
+  100% {
+    transform: scaleY(0.4);
+    -webkit-transform: scaleY(0.4);
+  }
+  20% {
+    transform: scaleY(1);
+    -webkit-transform: scaleY(1);
+  }
+}
