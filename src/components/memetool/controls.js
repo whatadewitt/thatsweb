@@ -1,6 +1,14 @@
-import React, { PureComponent } from "react";
+/* global FB */
 
+import React, { PureComponent } from "react";
 class MemeControls extends PureComponent {
+  constructor(props) {
+    super(props);
+
+    this.downloadMeme = this.downloadMeme.bind(this);
+    this.shareToFacebook = this.shareToFacebook.bind(this);
+  }
+
   renderTakePicture() {
     const { takePic } = this.props;
 
@@ -35,15 +43,37 @@ class MemeControls extends PureComponent {
     return <div className="thatsweb-tool__processing">Processing</div>;
   }
 
+  shareToFacebook() {
+    FB.ui(
+      {
+        method: "share",
+        href: this.props.photoUrl,
+        quote:
+          "Check out this sweet meme I made and make your own at https://www.thatsweb.ca #thatsweb #fitc #webunleashed"
+      },
+      resp => {}
+    );
+  }
+
+  downloadMeme() {
+    let x = new XMLHttpRequest();
+    x.open("GET", this.props.photoUrl, true);
+    x.responseType = "blob";
+    x.onload = function(e) {
+      require("downloadjs")(e.target.response, "sweet-meme.png", "image/png");
+    };
+    x.send();
+  }
+
   renderShare() {
-    const { restart } = this.props;
+    const { restart, photoUrl } = this.props;
 
     return (
       <React.Fragment>
         <div className="thatsweb-tool__share">
           <span className="thatsweb-tool__share-title">Share This Meme</span>
-          <a
-            href="//google.ca"
+          <div
+            onClick={() => this.shareToFacebook()}
             title="Share on Facebook"
             className="thatsweb-tool__share-icon"
           >
@@ -61,9 +91,11 @@ class MemeControls extends PureComponent {
                 d="M76.7 512V283H0v-91h76.7v-71.7C76.7 42.4 124.3 0 193.8 0c33.3 0 61.9 2.5 70.2 3.6V85h-48.2c-37.8 0-45.1 18-45.1 44.3V192H256l-11.7 91h-73.6v229"
               />
             </svg>
-          </a>
+          </div>
           <a
-            href="//google.ca"
+            href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(
+              "Check out this sweet meme I made and make your own!"
+            )} ${photoUrl}&url=https://www.thatsweb.ca&via=fitc, @whatadewitt&hashtags=webunleashed,thatsweb,serverless`}
             title="Share on Twitter"
             className="thatsweb-tool__share-icon"
           >
@@ -82,8 +114,8 @@ class MemeControls extends PureComponent {
               />
             </svg>
           </a>
-          <a
-            href="//google.ca"
+          <div
+            onClick={() => this.downloadMeme()}
             title="Save For Later"
             className="thatsweb-tool__share-icon"
           >
@@ -101,7 +133,7 @@ class MemeControls extends PureComponent {
                 d="M216 0h80c13.3 0 24 10.7 24 24v168h87.7c17.8 0 26.7 21.5 14.1 34.1L269.7 378.3c-7.5 7.5-19.8 7.5-27.3 0L90.1 226.1c-12.6-12.6-3.7-34.1 14.1-34.1H192V24c0-13.3 10.7-24 24-24zm296 376v112c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V376c0-13.3 10.7-24 24-24h146.7l49 49c20.1 20.1 52.5 20.1 72.6 0l49-49H488c13.3 0 24 10.7 24 24zm-124 88c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20zm64 0c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20z"
               />
             </svg>
-          </a>
+          </div>
         </div>
         <button className="thatsweb-button -restart" onClick={restart}>
           Start Over

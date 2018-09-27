@@ -143,7 +143,6 @@ class MemeTool extends PureComponent {
       stage: "processing"
     });
 
-    // TODO: move this to env vars
     Amplify.configure({
       Auth: {
         identityPoolId: process.env.REACT_APP_IDENTITY_POOL_ID,
@@ -157,7 +156,7 @@ class MemeTool extends PureComponent {
 
     let filename = shortid.generate();
     this.setState({
-      photoUrl: `//www.thatsweb.ca/uploads/${filename}.png` // TODO: check env here...
+      photoUrl: `https://www.thatsweb.ca/uploads/${filename}.png`
     });
 
     Amplify.Storage.put(
@@ -251,6 +250,8 @@ class MemeTool extends PureComponent {
             restart={this.restart}
             previewMeme={this.previewMeme}
             makeAMeme={this.makeAMeme}
+            photoUrl={this.state.photoUrl}
+            shareToFacebook={this.shareToFacebook}
           />
         </div>
       </div>

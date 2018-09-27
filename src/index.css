@@ -173,8 +173,9 @@ body {
   padding: 0;
 }
 
-.thatsweb-tool__share a {
+.thatsweb-tool__share .thatsweb-tool__share-icon {
   color: var(--black);
+  cursor: pointer;
   height: 1.5rem;
   line-height: 2rem;
   margin-left: 2rem;
@@ -182,13 +183,13 @@ body {
   width: 1.5rem;
 }
 
-.thatsweb-tool__share a svg {
+.thatsweb-tool__share .thatsweb-tool__share-icon svg {
   height: 100%;
   width: 100%;
 }
 
-.thatsweb-tool__share a:hover,
-.thatsweb-tool__share a:active {
+.thatsweb-tool__share .thatsweb-tool__share-icon:hover,
+.thatsweb-tool__share .thatsweb-tool__share-icon:active {
   color: #ffffff;
 }
 
