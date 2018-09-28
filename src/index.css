@@ -231,6 +231,11 @@ body {
   text-align: center;
 }
 
+.thatsweb__list-buttons {
+  display: flex;
+  justify-content: center;
+}
+
 .thatsweb__meme {
   text-align: center;
   margin: 0 auto;

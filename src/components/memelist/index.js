@@ -1,6 +1,6 @@
 import React, { PureComponent } from "react";
 
-import { BrowserRouter, Route, Link } from "react-router-dom";
+import { Router, Route, Link, withRouter } from "react-router-dom";
 
 import createBrowserHistory from "history/createBrowserHistory";
 
@@ -38,6 +38,7 @@ class MemeList extends PureComponent {
 
   render() {
     const { memes } = this.state;
+    // const { history } = this.props;
 
     return (
       <div className="thatsweb__main">
@@ -45,7 +46,7 @@ class MemeList extends PureComponent {
           <h1 className="thatsweb__title">Check out these sweet memes!</h1>
         </header>
         <div className="thatsweb__list">
-          <BrowserRouter history={history}>
+          <Router history={history}>
             <React.Fragment>
               <Route
                 exact
@@ -60,16 +61,21 @@ class MemeList extends PureComponent {
               />
               <Route path="/memes/:uuid" component={MemeView} />
             </React.Fragment>
-          </BrowserRouter>
-          <Link to="/tool">
-            <button className="thatsweb-button">
-              I gotta make one for myself! &raquo;
+          </Router>
+          <div className="thatsweb__list-buttons">
+            <button className="thatsweb-button -back" onClick={history.goBack}>
+              &laquo; Back
             </button>
-          </Link>
+            <Link to="/tool">
+              <button className="thatsweb-button">
+                I gotta make one for myself! &raquo;
+              </button>
+            </Link>
+          </div>
         </div>
       </div>
     );
   }
 }
 
-export default MemeList;
+export default withRouter(MemeList);
