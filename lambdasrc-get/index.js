@@ -19,13 +19,13 @@ exports.handler = (event, context, callback) => {
       callback(err);
     }
 
-    const { count } = results;
+    const { count } = results[0];
 
-    let query = "SELECT uuid FROM thatsweb";
+    // TODO: probably a better way...
+    let query = "SELECT uuid FROM thatsweb ORDER BY (id * RAND())";
 
     if (count > 20) {
-      query +=
-        " WHERE id >= (SELECT FLOOR(MAX(id) * RAND()) FROM thatsweb) ORDER BY id LIMIT 20;";
+      query += " LIMIT 20;";
     }
 
     connection.query(query, (err, results) => {
